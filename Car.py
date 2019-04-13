@@ -17,6 +17,8 @@ class Car:
             self.direction = "E"
         elif self.direction == "E":
             self.direction = "N"
+        self.say_state()
+        self.say_direction()
 
     def turn_right(self):
         if self.direction == "N":
@@ -27,21 +29,32 @@ class Car:
             self.direction = "W"
         elif self.direction == "W":
             self.direction = "N"
+        self.say_state()
+        self.say_direction()
+
+    def say_direction(self):
+        print("[" + self.name + "] moj aktualny kierunek: {}".format(self.direction))
 
     def say_state(self):
         print("[" + self.name + "] moja aktualna prędkość: {} km/h!".format(self.speed))
 
     def accelerate(self):
         self.speed += 5
+        self.say_state()
+        self.say_direction()
 
     def brake(self):
         if self.speed < 5:
             self.speed = 0
         else:
             self.speed -= 5
+        self.say_state()
+        self.say_direction()
 
     def hand_brake(self):
         self.speed = 0
+        self.say_state()
+        self.say_direction()
 
     def step(self):
         self.odometer += self.speed
@@ -51,8 +64,8 @@ class Car:
         if self.time != 0:
             return self.odometer / self.time
         else:
-            pass
-
+           pass
+        # powyższe 2 linie są w sumie niepotrzebne, ale pass jako polecenie moze kiedys sie przydac
 
 if __name__ == '__main__':
 
@@ -86,10 +99,14 @@ if __name__ == '__main__':
         elif action == 'H':
             os.system('cls')
             myCar.hand_brake()
-
+        elif action == 'A':
+            os.system('cls')
+            myCar.turn_left()
+        elif action == 'D':
+            os.system('cls')
+            myCar.turn_right()
         elif action == 'X':
             os.system('cls')
             print(" ... astalavista baby ....")
             exit()
         myCar.step()
-        myCar.say_state()
