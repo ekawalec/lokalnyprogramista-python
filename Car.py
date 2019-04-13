@@ -6,6 +6,27 @@ class Car:
         self.odometer = 0
         self.time = 0
         self.name = ""
+        self.direction = "N"
+
+    def turn_left(self):
+        if self.direction == "N":
+            self.direction = "W"
+        elif self.direction == "W":
+            self.direction = "S"
+        elif self.direction == "S":
+            self.direction = "E"
+        elif self.direction == "E":
+            self.direction = "N"
+
+    def turn_right(self):
+        if self.direction == "N":
+            self.direction = "E"
+        elif self.direction == "E":
+            self.direction = "S"
+        elif self.direction == "S":
+            self.direction = "W"
+        elif self.direction == "W":
+            self.direction = "N"
 
     def say_state(self):
         print("[" + self.name + "] moja aktualna prędkość: {} km/h!".format(self.speed))
@@ -18,6 +39,9 @@ class Car:
             self.speed = 0
         else:
             self.speed -= 5
+
+    def hand_brake(self):
+        self.speed = 0
 
     def step(self):
         self.odometer += self.speed
@@ -43,7 +67,7 @@ if __name__ == '__main__':
         print("[W] przyspiesz   |   [S] zwolnij   |   [Q] przebieg   |   [E] średnia prędkość   |   [X] koniec programu")
         print("---------------------------------------------------------------------------------------------------------")
         action = input("Twój wybór: ").upper()
-        if action not in "WSQEX" or len(action) != 1:
+        if action not in "WSQEXHAD" or len(action) != 1:
             os.system('cls')
             print("Nie wiem jak mam to wykonać")
             continue
@@ -59,6 +83,15 @@ if __name__ == '__main__':
         elif action == 'E':
             os.system('cls')
             print("Srednia prędkość: {} km/h".format(myCar.average_speed()))
+        elif action == 'H':
+            os.system('cls')
+            myCar.hand_brake()
+        elif action == 'A':
+            os.system('cls')
+            myCar.turn_right()
+        elif action == 'D':
+            os.system('cls')
+            myCar.turn_left()
         elif action == 'X':
             os.system('cls')
             print(" ... astalavista baby ....")
