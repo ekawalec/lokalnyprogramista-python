@@ -86,12 +86,7 @@ if __name__ == '__main__':
         elif action == 'H':
             os.system('cls')
             myCar.hand_brake()
-        elif action == 'A':
-            os.system('cls')
-            myCar.turn_right()
-        elif action == 'D':
-            os.system('cls')
-            myCar.turn_left()
+
         elif action == 'X':
             os.system('cls')
             print(" ... astalavista baby ....")
